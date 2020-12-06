@@ -2,12 +2,14 @@ package daos;
 
 
 
+import pojos.Emailpassword;
 import pojos.Signup;
 
 public interface ISignupdao {
 	
-	public void saveUsers(Signup signup);
 	public String findUser();
+		public void deleteUser(int next_val);
+	public void saveUsers(Signup signup);
 	
 
 }
