@@ -241,8 +241,29 @@ html,body{
     <script>
       gsap.from('#back  ',{duration: 2.5 , ease: 'expo.inOut', x: -1000 , opacity:0})
       function myFuction() {
-    	   
-    	 	  document.getElementById("form1").submit();
+    	  var mobile = document.getElementById("contnum");
+    	  
+    	    if(mobile.value.length!=10 ){
+    	       
+    	       alert("Invalid Contact Number");
+    	    }
+    	  var y = document.forms["form"]["contnum"].value;
+    	  if (y == "") {
+    	    alert(" Contact number must be filled out");
+    	    return false;
+    	  }
+    	  var z = document.forms["form"]["newpassword"].value;
+    	  if (z == "") {
+    	    alert(" New Password must be filled out");
+    	    return false;
+    	  }
+    	  var a = document.forms["form"]["confirmpassword"].value;
+    	  if (a == "") {
+    	    alert(" Confirm Password must be filled out");
+    	    return false;
+    	  }
+    	   if(y!="" && z!="" && a!=""){
+    	 	  document.getElementById("form1").submit();}
     	     	  
       }
     </script>

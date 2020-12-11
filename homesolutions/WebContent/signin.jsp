@@ -218,9 +218,9 @@ html,body{
         <div id="right">
             <h2>Sign In</h2>
             <form action="<%=request.getContextPath()%>/login">
-              <input type="text" placeholder="Contact Number" name="contnum"> 
+              <input type="text" placeholder="Contact Number" name="contnum" required> 
               <div class="line"></div>
-              <input type="password" placeholder="Password" name ="password">
+              <input type="password" placeholder="Password" name ="password" required>
               <div class="line"></div>
               <input type="submit" value="Sign in">
               <br>
