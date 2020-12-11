@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="C:\Users\HP NEW\Desktop\fontawesome icons\fontawesome-free-5.14.0-web\css\all.css">
+
+	<style type="text/css" rel="stylesheet">
+	.flex-container{
+		display: flex;
+		position: absolute;
+		left:0.5;
+	}	
+	#div1{
+		width: 240px;
+		height: 1900px;
+		float:left;
+		border: 4px solid orange;
+		margin-top: -20px;
+	}	
+	.button1{
+		width: 120px;
+		height: 60px;
+		border-radius: 20px;
+		border: 1px solid grey; 
+		background-color: rgb(255,180,20);
+	}
+	.button1:hover{
+		width: 130px;
+		background-color: #FE9F50;
+		height: 62px;
+	}
+	.fname{
+		width: 250px;
+		height: 50px;
+		border-radius: 20px;
+		border: 1px solid grey;
+		margin-left: 25px;
+		background-color: #D2D7DA;
+
+	}
+	#address{
+		width: 250px;
+		height: 150px;
+		margin-left: 20px;
+		border-radius: 20px;
+		border: 1px solid grey;
+		background-color: #D2D7DA;
+	}
+	#div2{
+		text-align: center;
+		background-size: cover;
+	}
+	table{
+		margin-left: 50px;
+		width: 1200px;
+		height: 700px;
+		margin-top: 50px;
+		border: 3px solid black;
+		font-size: 25px;
+		padding: 5px;
+		background-color: white;
+		
+	}
+	h1{
+		text-align: center;
+		padding: 5px;
+	}
+	th{
+		background-image: linear-gradient(to bottom,rgb(255,180,20),rgb(248,193,73));
+		border: 3px solid orange; 
+	}
+	#nav{
+		background-color: #D2D5D4;
+		height: 50px;
+		margin-top: -15px;
+	}
+	#progress{
+	    height: 50px;
+	    margin-top: -30px;
+	    width: 1300px;	
+	}
+	.btnn{
+		margin-top: 30px;
+		background-color: #D2D5D4;
+		border-radius: 30px;
+		width: 150px;
+		height: 50px;
+		padding: 15px;
+		border-color: transparent; 
+	}
+	.btnn:hover{
+		background-color: rgb(255,180,20);
+		width: 160px;
+		
+	}
+	h2{
+		margin-top: -60px;
+		margin-left: 1000px;
+	}
+	h4{
+		font-size: 16px;
+		margin-left: -20px;
+	}
+	
+	
+	
+
+	</style>
+	<title></title>
+</head>
+<body>
+	<div class="flex-container"> 
+	<div id="div1">
+		<div id="nav"><h1> User's Info</h1></div>
+				<form action="" id="myform" style="display:none">
+					<input type="text" placeholder="Firstname" name="firstname" > 
+                  <input type="text" placeholder="Lastname" name="lastname" >
+                  <h3>Gender</h3>
+                  <div id="gcheckbox" >
+                  <input type="radio" value="male" name="gender"/>
+                  <h4>Male</h4> 
+                  <input type="radio"  value="female" name="gender" />
+                  <h4>Female</h4> 
+                  <input type="radio"  value="other" name="gender"/>
+                  <h4>Other</h4> 
+                  </div>
+                  
+                  <input type="email" placeholder="email" name="email" >
+
+                  <input type="text" placeholder="Address" name="address" > 
+                  <input type="text" placeholder="Pincode" name="pincode" >
+                  <input type="text" placeholder="City" name="city">
+                 <input type="text" placeholder="State" name="state">
+                  <input type="submit"  onclick="" value="Save">
+                  <input type="submit"  onclick="closeform()" value ="Cancel">
+                 
+ </form>
+               
+  
+          
+           
+		
+		<ul>
+		<div><button title="click here" onclick="openFName()" class="button1" ><li><h3>First Name</h3></button></li>
+			<div id="fname" style="display:none">
+				<h4><i class="fas fa-edit 3x"><span style="color:black;">${firstname}</span></i></h4>
+			</div></div><br><br>
+
+		<div><button title="click here" onclick="openLName()" class="button1" ><li><h3>Last Name</h3></button></li>
+             <div id="lname" style="display:none">
+             	<h4><i class="fas fa-edit 3x"><span style="color:black;">${lastname}</span></i></h4>
+             	
+             </div>
+			</div><br><br>
+      
+         <div><button title="click here" onclick="openSignUp()" class="button1"><li><h3>Signed up as</h3></button></li>
+			<div id="signup" style="display:none">
+				<h4><i class="fas fa-edit 3x"><span style="color:black;">${signedupasa}</span></i></h4>
+
+			</div></div><br><br>
+			
+		<div><button title="click here" onclick="openEmail()" class="button1"><li><h3>Email</h3></button></li>
+			<div id="oemail" style="display:none">
+			<h4><i class="fas fa-edit 3x"><span style="color:black;">${email}</span></i></h4>
+			
+			</div></div><br><br>
+			
+		<div><button title="click here" onclick="openAddress()" class="button1"><li><h3>Address</h3></button></li>
+			<div id="address1" style="display:none">
+			<h4><i class="fas fa-edit 3x"><span style="color:black;">${address}</span></i></h4>
+			
+			</div></div><br><br>	
+
+        <div><button title="click here" onclick="openPincode()" class="button1"><li><h3>Pincode</h3></button></li>
+			<div id="pincode" style="display:none">
+							<h4><i class="fas fa-edit 3x"><span style="color:black;">${pincode}</span></i></h4>
+			</div></div><br><br>
+
+	    <div><button title="click here" onclick="openGender()" class="button1"><li><h3>Gender</h3></button></li>
+			<div id="gender" style="display:none">
+			<h4><i class="fas fa-edit 3x"><span style="color:black;">${gender}</span></i></h4>
+			
+			</div></div><br><br>
+
+	     <div><button title="click here" onclick="openCity()" class="button1"><li><h3>City</h3></button></li>
+			<div id="city" style="display:none">
+				<h4><i class="fas fa-edit 3x"><span style="color:black;">${city}</span></i></h4>
+			
+			</div></div><br><br>
+			
+		 <div><button title="click here" onclick="openState()" class="button1"><li><h3>State</h3></button></li>
+		 	<div id="state" style="display:none">
+		 			<h4><i class="fas fa-edit 3x"><span style="color:black;">${state}</span></i></h4>
+		 	
+			</div></div><br><br>
+
+	     <div><button title="click here" onclick="openNumber()" class="button1"><li><h3>Contact no</h3></button></li>
+			<div id="number" style="display:none">
+			<h4><i class="fas fa-edit 3x"><span style="color:black;">${contnum}</span></i></h4>
+			
+			</div></div><br><br>
+
+			<div><button title="click here" onclick="openBankDetail()" class="button1"><li><h3>Bank Details</h3></button></li>
+			<div id="detail" style="display:none">
+			<h4><i class="fas fa-edit 3x"><span style="color:black;">${bankdetails}</span></i></h4>
+			
+			</div></div><br><br>	
+			<div><a href="signin.jsp"><button title="click here" class="button1"><li><h3>Log out</h3></button></a></li>
+			</div><br><br>							
+       </ul>
+	</div>
+
+	<div id="div2">
+		<div id="progress"><center><h1>Progress</h1></center>
+	
+			<h2><i class="fas fa-home 2x"></i>Home</h2></div>
+		<div><button class="btnn" onclick="aua()">Available</button>
+			<button class="btnn" onclick="una()">Unavailable</button></div>
+			<div id="unavailable" style="display:none">
+				<h4>Unavailable  <i class="fas fa-edit 3x"></i></h4>
+			</div><div id="available" style="display:none">
+				<h4>Available  <i class="fas fa-edit 3x"></i></h4>
+			</div>
+			
+	<table>
+			<tr>
+
+				<th>To Do List</th>
+				<th>In progress</th>
+				<th>Completed</th>
+				<th>Mode of Payment</th>
+			</tr>
+			<tr>
+				
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		
+	</div>
+</div>
+<script type="text/javascript">
+	
+function openFName(){
+	var x = document.getElementById("fname");
+	if (x.style.display == "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }}
+  function openLName(){
+  	var y = document.getElementById("lname");
+	if (y.style.display == "none") {
+    y.style.display = "block";
+  } else {
+    y.style.display = "none";
+  }}
+  function openSignUp(){
+  	var z = document.getElementById("signup");
+	if (z.style.display == "none") {
+    z.style.display = "block";
+  } else {
+    z.style.display = "none";
+  }}
+  function openEmail(){
+  	var a = document.getElementById("oemail");
+	if (a.style.display == "none") {
+    a.style.display = "block";
+  } else {
+    a.style.display = "none";
+  }}
+  function openAddress(){
+  	var b = document.getElementById("address1");
+	if (b.style.display == "none") {
+    b.style.display = "block";
+  } else {
+    b.style.display = "none";
+  }}
+  function openPincode(){
+  	var c = document.getElementById("pincode");
+	if (c.style.display == "none") {
+    c.style.display = "block";
+  } else {
+    c.style.display = "none";
+  }}
+  function openGender(){
+  	var d = document.getElementById("gender");
+	if (d.style.display == "none") {
+    d.style.display = "block";
+  } else {
+    d.style.display = "none";
+  }}
+  function openCity(){
+  	var e = document.getElementById("city");
+	if (e.style.display == "none") {
+    e.style.display = "block";
+  } else {
+    e.style.display = "none";
+  }}
+  function openState(){
+  	var f = document.getElementById("state");
+	if (f.style.display == "none") {
+    f.style.display = "block";
+  } else {
+    f.style.display = "none";
+  }}
+  function openNumber(){
+  	var g = document.getElementById("number");
+	if (g.style.display == "none") {
+    g.style.display = "block";
+  } else {
+    g.style.display = "none";
+  }}
+  function openBankDetail(){
+  	var h = document.getElementById("detail");
+	if (h.style.display == "none") {
+    h.style.display = "block";
+  } else {
+    h.style.display = "none";
+  }}
+  function aua(){
+	  	var h = document.getElementById("available");
+	  	var i = document.getElementById("unavailable");
+
+		if (h.style.display == "none") {
+	    h.style.display = "block";
+	  } else {
+	    h.style.display = "none";
+	  }
+		i.style.display="none";}
+  function una(){
+	  	var h = document.getElementById("unavailable");
+	  	var i = document.getElementById("available");
+
+		if (h.style.display == "none") {
+	    h.style.display = "block";
+	  } else {
+	    h.style.display = "none";
+	  }
+		i.style.display="none";}
+	function openform() {
+		  document.getElementById("myform").style.display = "block";
+		}
+
+		function closeform() {
+		  document.getElementById("myform").style.display = "none";
+		}
+
+  
+
+</script>
+
+</body>
+</html>

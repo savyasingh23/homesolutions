@@ -13,11 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import daos.ISignupdao;
 import daos.ISignupqueries;
 import daos.Signupdao;
 import daos.Signupqueries;
+import hibernate.util.Hibernateutil;
 import pojos.Emailpassword;
 import pojos.Signup;
 
@@ -138,12 +142,44 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
 
     private void authenticate(HttpServletRequest request, HttpServletResponse response)
     throws Exception {
-    	
+
         String contnum = request.getParameter("contnum");
         String password = request.getParameter("password");
+    	Transaction t = null;
+    	Signup ep = null;
+        try  {
+        	SessionFactory sf = Hibernateutil.getSessionFactory();
+        	Session s = sf.openSession();
+        	t = s.beginTransaction();
+            ep = (Signup) s.createQuery("FROM Signup S WHERE S.contnum = :contnum").setParameter("contnum", contnum).uniqueResult();
+
+              t.commit();
+        } catch (Exception e) {
+            if (t != null) {
+                t.rollback();
+            }
+            e.printStackTrace();
+        }
+    	
         ISignupqueries sq = new Signupqueries();
         if (sq.checkUser(contnum, password)) {
-        	 response.sendRedirect("project1.jsp");
+        	if(sq.loginPage(contnum).equals("End-User")) {
+        	 response.sendRedirect("enduser/index.jsp");}
+        	else {
+            	request.setAttribute("firstname", ep.getFirstname());
+            	request.setAttribute("lastname", ep.getLastname());
+            	request.setAttribute("pincode", ep.getPincode());
+            	request.setAttribute("gender", ep.getGender());
+            	request.setAttribute("city", ep.getCity());
+            	request.setAttribute("state", ep.getState());
+            	request.setAttribute("address", ep.getAddress());
+            	request.setAttribute("signedupasa", ep.getSignedupasa());
+            	request.setAttribute("email", ep.getEmail());
+            	request.setAttribute("contnum", ep.getContnum());
+            	RequestDispatcher rd = request.getRequestDispatcher("epr.jsp");
+                rd.forward(request, response); 
+
+        	}
         } else {
             //throw new Exception("Login not successful..");
         	System.out.println("Login unsuccessfull");

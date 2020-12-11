@@ -174,19 +174,18 @@ html,body{
 
 }
 
-#forms #buttons button:nth-child(2){
+#forms #buttons a{
     width: 150px;
     height: 50px;
     border: none;
     outline: none;
     margin-left: 120px;
-    background-color:  rgb(248, 193, 73);
     color: #fff;
     font-weight: 600;
     font-size: 15px;
     position: absolute;
-    top: 85%;
-    left: 40%;
+    top: 82.7%;
+    left: 35%;
     transform: translate(-50%,-50%);
 
 }
@@ -261,6 +260,7 @@ input[type=checkbox] {
 }
 
 
+       
 
 
     </style>
@@ -393,6 +393,46 @@ input[type=checkbox] {
     <script>
       gsap.from('#back ',{duration: 2.5 , ease: 'expo.inOut', y:1000 , opacity:0})
       function myFunction() {
+    	  var x = document.forms["form"]["firstname"].value;
+    	  if (x == "") {
+    	    alert(" Filled Name must be filled out");
+    	    return false;
+    	  }
+    	  var y = document.forms["form"]["lastname"].value;
+    	  if (y == "") {
+    	    alert(" Last Name must be filled out");
+    	    return false;
+    	  }
+    	  var z = document.forms["form"]["gender"].value;
+    	  if (x == "") {
+    	    alert(" Gender must be filled out");
+    	    return false;
+    	  }
+    	  var a = document.forms["form"]["state"].value;
+    	  if (a == "") {
+    	    alert(" State must be filled out");
+    	    return false;
+    	  }
+    	  var b = document.forms["form"]["city"].value;
+    	  if (b == "") {
+    	    alert(" City  must be filled out");
+    	    return false;
+    	  }
+    	  var c = document.forms["form"]["address"].value;
+    	  if (c == "") {
+    	    alert(" Address must be filled out");
+    	    return false;
+    	  }
+    	  var d = document.forms["form"]["pincode"].value;
+    	  if (d == "") {
+    	    alert(" Pincode must be filled out");
+    	    return false;
+    	  }
+    	  var e = document.forms["form"]["email"].value;
+    	  if (e == "") {
+    	    alert(" Email must be filled out");
+    	    return false;
+    	  }
     	  
     	  var card = document.getElementById("selectone");
     	 
@@ -405,7 +445,10 @@ input[type=checkbox] {
     	  else  {
 	    	       alert('select one answer from the ( User or Provider?)');
 
-			}}
+			}
+    	 
+    	  
+      }
     </script>
 
 

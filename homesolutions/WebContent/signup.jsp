@@ -178,7 +178,7 @@ background-color: rgb(255, 180, 20);
             <h2>Sign Up</h2>
             <form action="<%=request.getContextPath()%>/signup1"  method="post" id="form">
               
-              <input type="text" placeholder="Phone number" name="contnum" required> 
+              <input type="text" placeholder="Phone number" name="contnum" id="contnum" pattern="[0-9]{10}" required> 
               <div class="line"></div>
               <input type="password" placeholder=" Create Password" name ="password" id="myInput" required>
               <div class="line"></div>
@@ -191,7 +191,7 @@ background-color: rgb(255, 180, 20);
 
 
               <div id="buttons">
-                <a href="register.jsp"><button>Register</button></a>
+                <button onclick="val()">Register</button>
                 <button>send otp</button>
                  <span style="color:red;">${errMsg}</span>
                 
@@ -319,7 +319,34 @@ background-color: rgb(255, 180, 20);
 
     <script>
       gsap.from('#back ',{duration: 2.5 , ease: 'expo.inOut', x: 1000 , opacity:0})
+      function val() {
+    	  var mobile = document.getElementById("contnum");
+    	  
+  	    if(mobile.value.length!=10 ){
+  	       
+  	       alert("Invalid Contact Number");
+  	    }
+  	  var d = document.forms["form"]["contnum"].value;
+	  if (d == "") {
+	    alert(" Phone Number must be filled out");
+	    return false;
+	  }
+	  var e = document.forms["form"]["password"].value;
+	  if (e == "") {
+	    alert(" Password must be filled out");
+	    return false;
+	  }
+	  var f = document.forms["form"]["otp"].value;
+	  if (f == "") {
+	    alert(" OTP must be filled out");
+	    return false;
+	  }
+	  if(mobile!="" && d!="" && e!="" && f!=""){
+		document.getElementById("form").submit();}
+
+      }
       function myFunction(){
+    	 
   var x = document.getElementById("myInput");
   if (x.type == "password") {
     x.type = "text";
