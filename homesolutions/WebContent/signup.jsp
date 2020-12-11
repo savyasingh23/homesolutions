@@ -178,7 +178,7 @@ background-color: rgb(255, 180, 20);
             <h2>Sign Up</h2>
             <form action="<%=request.getContextPath()%>/signup1"  method="post" id="form">
               
-              <input type="text" placeholder="Phone number" name="contnum" id="contnum" pattern="[0-9]{10}" required> 
+              <input type="number" placeholder="Contact number" name="contnum" id="contnum"  required> 
               <div class="line"></div>
               <input type="password" placeholder=" Create Password" name ="password" id="myInput" required>
               <div class="line"></div>
@@ -321,8 +321,8 @@ background-color: rgb(255, 180, 20);
       gsap.from('#back ',{duration: 2.5 , ease: 'expo.inOut', x: 1000 , opacity:0})
       function val() {
     	  var mobile = document.getElementById("contnum");
-    	  
-  	    if(mobile.value.length!=10 ){
+    	            
+  	    if(mobile.value.length!=10){
   	       
   	       alert("Invalid Contact Number");
   	    }

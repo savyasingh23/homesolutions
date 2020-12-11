@@ -183,7 +183,7 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
         } else {
             //throw new Exception("Login not successful..");
         	System.out.println("Login unsuccessfull");
-        	request.setAttribute("errMsg", "Invalid Contact number or Password");
+        	request.setAttribute("errMsg", "Invalid Password");
         	RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
             rd.forward(request, response); 
            // response.sendRedirect("signin.jsp");

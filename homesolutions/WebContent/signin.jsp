@@ -217,12 +217,12 @@ html,body{
         </div>
         <div id="right">
             <h2>Sign In</h2>
-            <form action="<%=request.getContextPath()%>/login">
-              <input type="text" placeholder="Contact Number" name="contnum" required> 
+            <form action="<%=request.getContextPath()%>/login" id="form1">
+              <input type="number" placeholder="Contact Number" name="contnum" id="contnum" > 
               <div class="line"></div>
-              <input type="password" placeholder="Password" name ="password" required>
+              <input type="password" placeholder="Password" name ="password" id="password">
               <div class="line"></div>
-              <input type="submit" value="Sign in">
+              <input type="button" value="Sign in" onclick="val()">
               <br>
               <a href="forgetpassword.jsp" >forgot password?</a>
 			    <span style="color:red;">${errMsg}</span>
@@ -238,6 +238,22 @@ html,body{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <script>
       gsap.from('#back  ',{duration: 2.5 , ease: 'expo.inOut', x: -1000 , opacity:0})
+      function val() {
+       var mobile = document.getElementById("contnum");
+    	            
+  	    if(mobile.value.length!=10 || mobile.value==""){
+  	       
+  	       alert("Invalid Contact Number");
+  	    }
+	  
+	  var e = document.forms["form1"]["password"].value;
+	  if (e == "") {
+	    alert(" Password must be filled out");
+	    return false;
+	  }
+	  if(e!="" && mobile.value.length==10){
+  	  document.getElementById("form1").submit();  }
+      }
     </script>
     
 </body>

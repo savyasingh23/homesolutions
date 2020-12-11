@@ -243,15 +243,11 @@ html,body{
       function myFuction() {
     	  var mobile = document.getElementById("contnum");
     	  
-    	    if(mobile.value.length!=10 ){
+    	    if(mobile.value.length!=10 || mobile.value==""){
     	       
     	       alert("Invalid Contact Number");
     	    }
-    	  var y = document.forms["form"]["contnum"].value;
-    	  if (y == "") {
-    	    alert(" Contact number must be filled out");
-    	    return false;
-    	  }
+    	 
     	  var z = document.forms["form"]["newpassword"].value;
     	  if (z == "") {
     	    alert(" New Password must be filled out");
@@ -262,7 +258,7 @@ html,body{
     	    alert(" Confirm Password must be filled out");
     	    return false;
     	  }
-    	   if(y!="" && z!="" && a!=""){
+    	   if(z!="" && a!="" && mobile.value.length==10){
     	 	  document.getElementById("form1").submit();}
     	     	  
       }

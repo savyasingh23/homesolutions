@@ -393,6 +393,7 @@ input[type=checkbox] {
     <script>
       gsap.from('#back ',{duration: 2.5 , ease: 'expo.inOut', y:1000 , opacity:0})
       function myFunction() {
+    	  
     	  var x = document.forms["form"]["firstname"].value;
     	  if (x == "") {
     	    alert(" Filled Name must be filled out");
@@ -404,7 +405,7 @@ input[type=checkbox] {
     	    return false;
     	  }
     	  var z = document.forms["form"]["gender"].value;
-    	  if (x == "") {
+    	  if (z == "") {
     	    alert(" Gender must be filled out");
     	    return false;
     	  }
