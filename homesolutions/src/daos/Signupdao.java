@@ -9,7 +9,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import hibernate.util.Hibernateutil;
-import pojos.Emailpassword;
 import pojos.Signup;
 
 public class Signupdao implements ISignupdao {

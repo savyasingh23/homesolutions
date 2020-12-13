@@ -21,9 +21,11 @@ import daos.ISignupdao;
 import daos.ISignupqueries;
 import daos.Signupdao;
 import daos.Signupqueries;
+import daos.Worktododao;
+import daos.Worktodohql;
 import hibernate.util.Hibernateutil;
-import pojos.Emailpassword;
 import pojos.Signup;
+import pojos.Worktodo;
 
 
 
@@ -32,7 +34,7 @@ import pojos.Signup;
 public class WebsiteController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Signupdao signupdao;
-    private String fn,ln,g,contactnum,email1,password1,st,c,add,anc;int pin;
+    private String fn,ln,g,contactnum,email1,password1,payment,st,c,add,anc,d,t,cn,contactnumreg;int pin;
     public void init() {
         signupdao = new Signupdao();
     }
@@ -66,8 +68,11 @@ public class WebsiteController extends HttpServlet {
 							st=request.getParameter("state");
 							c=request.getParameter("city");
 							System.out.println(fn+ln+contactnum);
-							createUsers2(request,response);
-							response.sendRedirect("project1.jsp");
+							try {
+								createUsers2(request,response);
+							} catch (Exception e1) {
+								e1.printStackTrace();
+								}
 		    				break;
 			case "/forgetpassword":
 								try {
@@ -76,10 +81,23 @@ public class WebsiteController extends HttpServlet {
 											e.printStackTrace();
 										}
 		    				break;
-		    				
-		    case "/cancelsignup":cancelUser(request,response);
-		    					  break;
-		    					  
+			case "/formconfirm":String name=(String) request.getAttribute("firstname");
+									System.out.println(name);
+				
+				response.sendRedirect("eu.jsp");
+				
+									break;
+						
+			case "/userpage2":cn=request.getParameter("contnum");
+								contactnumreg=request.getParameter("contnumreg");
+								d=request.getParameter("doc");
+								t=request.getParameter("time");
+								payment=request.getParameter("payment");
+								System.out.println(cn+d+t+contactnumreg);
+								eprpage(request,response);
+								userpage(request,response);
+								
+								break;
 		    case "/login":
 		    				try {
 		    					authenticate(request, response);
@@ -95,12 +113,71 @@ public class WebsiteController extends HttpServlet {
         
 
 
-private void cancelUser(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		Signupdao signupdao = new Signupdao();
+
+
+private void eprpage(HttpServletRequest request, HttpServletResponse response) {
+	Worktodohql whql = new Worktodohql();
+	String contnum=cn;
+	String connumreg=contactnumreg;
+	String date=d;
+	String time=t;
+	String pay=payment;
+	 Worktodo w = new Worktodo();
+	 w.setContnum(contnum);
+	 w.setContnumreg(connumreg);
+	 w.setDate(date);
+	 w.setTime(time);
+    w.setPayment(pay);
+    w.setAddress(whql.checkUser(contnum));
+     Worktododao wd=new Worktododao();
+     wd.saveUsers(w);
+
 	}
 
-private void createUsers2(HttpServletRequest request, HttpServletResponse response) {
+
+private void userpage(HttpServletRequest request, HttpServletResponse response) {
+		String contnum=cn;
+		Transaction t = null;
+    	Signup ep = null;
+        try  {
+        	SessionFactory sf = Hibernateutil.getSessionFactory();
+        	Session s = sf.openSession();
+        	t = s.beginTransaction();
+            ep = (Signup) s.createQuery("FROM Signup S WHERE S.contnum = :contnum").setParameter("contnum", contnum).uniqueResult();
+
+              t.commit();
+        } catch (Exception e) {
+            if (t != null) {
+                t.rollback();
+            }
+            e.printStackTrace();
+        }
+    	
+        
+        		request.setAttribute("firstname", ep.getFirstname());
+             	request.setAttribute("lastname", ep.getLastname());
+             	request.setAttribute("pincode", ep.getPincode());
+             	request.setAttribute("gender", ep.getGender());
+             	request.setAttribute("city", ep.getCity());
+             	request.setAttribute("state", ep.getState());
+             	request.setAttribute("address", ep.getAddress());
+             	request.setAttribute("signedupasa", ep.getSignedupasa());
+             	request.setAttribute("email", ep.getEmail());
+             	request.setAttribute("contnum", ep.getContnum());
+             	RequestDispatcher rd = request.getRequestDispatcher("enduser.jsp");
+                 try {
+					rd.forward(request, response);
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		
+	}
+
+private void createUsers2(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
     
@@ -131,9 +208,57 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
      signup.setState(state);
      signup.setAgreeandcontinue(agreeandcontinue);
      signupdao.saveUsers(signup);
-	}
+     
+     Transaction t = null;
+ 	Signup ep = null;
+     try  {
+     	SessionFactory sf = Hibernateutil.getSessionFactory();
+     	Session s = sf.openSession();
+     	t = s.beginTransaction();
+         ep = (Signup) s.createQuery("FROM Signup S WHERE S.contnum = :contnum").setParameter("contnum", contnum).uniqueResult();
 
+           t.commit();
+     } catch (Exception e) {
+         if (t != null) {
+             t.rollback();
+         }
+         e.printStackTrace();
+     }
+ 	
+     ISignupqueries sq = new Signupqueries();
+     	
+     	if(sq.loginPage(contnum).equals("End-User")) {
+     		request.setAttribute("firstname", ep.getFirstname());
+         	request.setAttribute("lastname", ep.getLastname());
+         	request.setAttribute("pincode", ep.getPincode());
+         	request.setAttribute("gender", ep.getGender());
+         	request.setAttribute("city", ep.getCity());
+         	request.setAttribute("state", ep.getState());
+         	request.setAttribute("address", ep.getAddress());
+         	request.setAttribute("signedupasa", ep.getSignedupasa());
+         	request.setAttribute("email", ep.getEmail());
+         	request.setAttribute("contnum", ep.getContnum());
+         	RequestDispatcher rd = request.getRequestDispatcher("enduser.jsp");
+             rd.forward(request, response); 
+     	}
+     	else {
+         	request.setAttribute("firstname", ep.getFirstname());
+         	request.setAttribute("lastname", ep.getLastname());
+         	request.setAttribute("pincode", ep.getPincode());
+         	request.setAttribute("gender", ep.getGender());
+         	request.setAttribute("city", ep.getCity());
+         	request.setAttribute("state", ep.getState());
+         	request.setAttribute("address", ep.getAddress());
+         	request.setAttribute("signedupasa", ep.getSignedupasa());
+         	request.setAttribute("email", ep.getEmail());
+         	request.setAttribute("contnum", ep.getContnum());
+         	RequestDispatcher rd = request.getRequestDispatcher("epr.jsp");
+             rd.forward(request, response); 
 
+     	}
+     	
+
+}
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -164,8 +289,20 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
         ISignupqueries sq = new Signupqueries();
         if (sq.checkUser(contnum, password)) {
         	if(sq.loginPage(contnum).equals("End-User")) {
-        	 response.sendRedirect("enduser/index.jsp");}
-        	else {
+        		request.setAttribute("firstname", ep.getFirstname());
+             	request.setAttribute("lastname", ep.getLastname());
+             	request.setAttribute("pincode", ep.getPincode());
+             	request.setAttribute("gender", ep.getGender());
+             	request.setAttribute("city", ep.getCity());
+             	request.setAttribute("state", ep.getState());
+             	request.setAttribute("address", ep.getAddress());
+             	request.setAttribute("signedupasa", ep.getSignedupasa());
+             	request.setAttribute("email", ep.getEmail());
+             	request.setAttribute("contnum", ep.getContnum());
+             	RequestDispatcher rd = request.getRequestDispatcher("enduser.jsp");
+                 rd.forward(request, response); 
+                 
+        	}else {
             	request.setAttribute("firstname", ep.getFirstname());
             	request.setAttribute("lastname", ep.getLastname());
             	request.setAttribute("pincode", ep.getPincode());

@@ -7,15 +7,14 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-    <link rel="stylesheet" type="text/css" href="\WebContent\fontawesome-free-5.15.1-web\css\all.css">
+    <link rel="stylesheet" type="text/css" href="C:\Users\HP NEW\Desktop\fontawesome icons\fontawesome-free-5.14.0-web\css\all.css">
 
     <title>HOME SOLUTIONS</title>
     <style type="text/css" rel="stylesheet">
     	
 
      body{
-	background-image: url(logo.jpg);
+	background-image: url(background-1.png);
 	background-repeat: no-repeat;
 	background-size:100%;
    background-color: white;
@@ -36,12 +35,14 @@
 hr{
 	height: 1px;
 	width: 10%;
-	background-color: red;
+	background-color: rgb(255, 180, 20);
 }
 #footer{
-	background-color: #2F363F;
+	background-color: rgb;
 }
-
+#navbar{
+	background-color: rgb(255, 180, 20);
+}
 
 
     </style>
@@ -73,8 +74,12 @@ hr{
       </li>
 
       <li class="nav-item active">
-        <a class=" btn btn-outline-danger text-white " href="signin.jsp">Login/Sign Up</a>
+        <a class=" btn btn-outline-warning text-white " href="signin.jsp">Sign In</a>
       </li>
+      <li class="nav-item active" style="margin-left: 5px;">
+        <a class=" btn btn-outline-warning text-white " href="signup.jsp">Sign Up</a>
+      </li>
+
 
       
     </ul>
@@ -96,24 +101,24 @@ hr{
     <hr>
     <div class="row">
     <div class="col-md-4">
-      <i class="fas fa-wrench text-danger fa-5x"></i>
+      <i class="fas fa-wrench text-warning fa-5x"></i>
       <h4 class="display-4">Plumbers</h4>
       <hr>
-      <p>lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      <p>We try to provide the best out of all services to our customers at their doorsteps.</p>
     </div>
 
     <div class="col-md-4">
-      <i class="fas fa-bolt text-danger fa-5x"></i>
+      <i class="fas fa-bolt text-warning fa-5x"></i>
       <h4 class="display-4">Electricians</h4>
       <hr>
-      <p>lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      <p>We try to provide the best out of all services to our customers at their doorsteps.</p>
     </div>
 
     <div class="col-md-4">
-      <i class="fas fa-hammer text-danger fa-5x"></i>
+      <i class="fas fa-hammer text-warning fa-5x"></i>
       <h4 class="display-4">Repairers</h4>
       <hr>
-      <p>lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      <p>We try to provide the best out of all services to our customers at their doorsteps.</p>
     </div>
   </div>
   </div>
@@ -124,17 +129,17 @@ hr{
   <section>
   	<div class="row">
   		<div class="col-md-4">
-  			<h4 class="display-5 text-danger">How this site is helpful to the users?</h4>
+  			<h4 class="display-5 text-warning">How this site is helpful to the users?</h4>
   			<hr>
   			<p>This site is for End-Users and Registered Users..</p>
   		</div>
   		<div class="col-md-4">
-  			<h4 class="display-5 text-danger">What is the primary aim of this site?</h4>
+  			<h4 class="display-5 text-warning">What is the primary aim of this site?</h4>
   			<hr>
   			<p>To summon the electricians,plumbers and repairers of the nearest location of the user..</p>
   		</div>
   		<div class="col-md-4">
-  			<h4 class="display-5 text-danger">What do they expect to find or do here?</h4>
+  			<h4 class="display-5 text-warning">What do they expect to find or do here?</h4>
   			<hr>
   			<p>To see the available electricians,plumbers and repairers by entering the pincode of an area..</p>
   		</div>
@@ -150,32 +155,32 @@ hr{
       	<div class="row">
       		<div class="col-md-4">
       			<div class="card">
-      				<img src="E:\eclipse-workspace-2\homesolutions\WebContent\img3.jpg" >
+      				<img src="\Minor-Project-main\img3.jpg" class="card-img-top">
       				<div class="card-body">
-      					<h5 class="card-title text-info">Plumbers</h5>
-      					<p class="text">Some quick example text to build card-title and make u the bulk of the card's context.</p>
-      					<a href="#" class="btn-btn-outline-danger">Read More</a> 
+      					<h5 class="card-title text-warning">Plumbers</h5>
+      					<p class="text">Our aim is to provide best available plumbers to our customers in their nearby locations conveniently.</p>
+      					<a class="btn btn-outline-warning text-secondary " href="#">Read more</a> 
       		</div>
       	</div>
       </div>
           <div class="col-md-4">
       			<div class="card">
-      				<img src="E:\eclipse-workspace-2\homesolutions\WebContent\img4.jpg" >
+      				<img src="/Minor-Project-main/img4.jpg" class="card-img-top">
       				<div class="card-body">
-      					<h5 class="card-title text-info">Electricians</h5>
-      					<p class="text">Some quick example text to build card-title and make u the bulk of the card's context.</p>
-      					<a href="#" class="btn-btn-outline-danger">Read More</a> 
+      					<h5 class="card-title text-warning">Electricians</h5>
+      					<p class="text">Our aim is to provide best available electricians to our customers in their nearby locations conveniently..</p>
+      					<a class=" btn btn-outline-warning text-secondary" href="#">Read more</a>
 
       				</div>
       			</div>
       		</div>
       		<div class="col-md-4">
       			<div class="card">
-      				<img src="E:\eclipse-workspace-2\homesolutions\WebContent\img6.jpg" >
+      				<img src="/Minor-Project-main/img6.jpg" class="card-img-top">
       				<div class="card-body">
-      					<h5 class="card-title text-info">Repairers</h5>
-      					<p class="text">Some quick example text to build card-title and make u the bulk of the card's context.</p>
-      					<a href="#" class="btn-btn-outline-danger">Read More</a> 
+      					<h5 class="card-title text-warning">Repairers</h5>
+      					<p class="text">Our aim is to provide best available repairers to our customers in their nearby locations conveniently.</p>
+      					<a class=" btn btn-outline-warning text-secondary" href="#">Read more</a> 
 
       				</div>
       			</div>
@@ -188,39 +193,39 @@ hr{
 
 
   </section>
-  <footer id="footer" class="page-footer font-small special-color-dark pt-4">
+  <footer id="footer" class="page-footer font-small special-color-dark pt-4 bg-dark">
    <div class="container">
-   	<ul class="list-unstyled list-inline text-center text-info">
+   	<ul class="list-unstyled list-inline text-center text-warning">
    	<li class="list-inline-item">
    		<a href="#">
-          <i class="fab fa-facebook fa-2x"></i>
+          <i class="fab fa-facebook fa-2x text-warning"></i>
    	     </a>		
    	</li>	
    	<li class="list-inline-item">
    		<a href="#">
-          <i class="fab fa-twitter fa-2x"></i>
+          <i class="fab fa-twitter fa-2x text-warning"></i>
    	     </a>		
    	</li>	
    	<li class="list-inline-item">
    		<a href="#">
-          <i class="fab fa-google-plus-g fa-2x"></i>
+          <i class="fab fa-google-plus-g fa-2x text-warning"></i>
    	     </a>		
    	</li>	
    	<li class="list-inline-item">
    		<a href="#">
-          <i class="fab fa-linkedin fa-2x"></i>
+          <i class="fab fa-linkedin fa-2x text-warning"></i>
    	     </a>		
    	</li>	
    	<li class="list-inline-item">
    		<a href="#">
-          <i class="fab fa-instagram fa-2x"></i>
+          <i class="fab fa-instagram fa-2x text-warning"></i>
    	     </a>		
    	</li>	
    	</ul> 
 
 </div>
-<div class="foooter-copyright text-center text-white">c 2020 copyright:
-<a href="project1.html"> HomeSolutions.com</a></div>
+<div class="foooter-copyright text-center text-warning">c 2020 copyright:
+<a href="project1.jsp" style="color: rgb(255, 180, 20);"> HomeSolutions.com</a></div>
   </footer>
 
 

@@ -2,7 +2,6 @@ package daos;
 
 
 
-import pojos.Emailpassword;
 import pojos.Signup;
 
 public interface ISignupdao {
