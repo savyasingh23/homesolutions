@@ -119,31 +119,7 @@
 <body>
 	<div class="flex-container"> 
 	<div id="div1">
-		<div id="nav"><h1> User's Info</h1></div>
-				<form action="" id="myform" style="display:none">
-					<input type="text" placeholder="Firstname" name="firstname" > 
-                  <input type="text" placeholder="Lastname" name="lastname" >
-                  <h3>Gender</h3>
-                  <div id="gcheckbox" >
-                  <input type="radio" value="male" name="gender"/>
-                  <h4>Male</h4> 
-                  <input type="radio"  value="female" name="gender" />
-                  <h4>Female</h4> 
-                  <input type="radio"  value="other" name="gender"/>
-                  <h4>Other</h4> 
-                  </div>
-                  
-                  <input type="email" placeholder="email" name="email" >
-
-                  <input type="text" placeholder="Address" name="address" > 
-                  <input type="text" placeholder="Pincode" name="pincode" >
-                  <input type="text" placeholder="City" name="city">
-                 <input type="text" placeholder="State" name="state">
-                  <input type="submit"  onclick="" value="Save">
-                  <input type="submit"  onclick="closeform()" value ="Cancel">
-                 
- </form>
-               
+		<div id="nav"><h1> User's Info</h1></div>       
   
           
            
