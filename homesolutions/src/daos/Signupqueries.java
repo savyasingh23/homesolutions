@@ -107,6 +107,31 @@ public class Signupqueries implements ISignupqueries {
         }
         return "";
     }
+
+	@Override
+	public boolean changeAvuav(String avunav,String contnum) {
+		Transaction t = null;
+        try  {
+        	SessionFactory sf = Hibernateutil.getSessionFactory();
+        	Session s = sf.openSession();
+        	t = s.beginTransaction();
+            @SuppressWarnings("rawtypes")
+			Query query= s.createQuery("UPDATE Signup set avunav=:avunav WHERE contnum=:contnum");
+            query.setParameter("contnum", contnum);
+            query.setParameter("avunav", avunav);
+            @SuppressWarnings("unused")
+			int status=query.executeUpdate();
+            t.commit();
+             return true;
+                      
+        } catch (Exception e) {
+            if (t != null) {
+                t.rollback();
+            }
+            e.printStackTrace();
+        }
+		return false;
+	}
 	
 
 	

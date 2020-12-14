@@ -22,13 +22,13 @@ public class Signup {
 	private String contnum;
 	private String state;
 	private String agreeandcontinue;
-	
+	private String avunav;
 	public Signup() {
 		
 	}
 
 	public Signup(int userid, String email,String password, String signedupasa, String firstname, String lastname, String address,
-			int pincode, String gender, String city, String contnum, String state, String agreeandcontinue) {
+			int pincode, String gender, String city, String contnum, String state, String agreeandcontinue,String avunav) {
 		this.userid = userid;
 		this.email =email;
 		this.password=password;
@@ -42,6 +42,7 @@ public class Signup {
 		this.contnum = contnum;
 		this.state = state;
 		this.agreeandcontinue = agreeandcontinue;
+		this.avunav=avunav;
 	}
 
 	public int getUserid() {
@@ -151,6 +152,14 @@ public class Signup {
 				+ ", lastname=" + lastname + ", address=" + address + ", pincode=" + pincode + ", gender=" + gender
 				+ ", city=" + city + ", contnum=" + contnum + ", state=" + state + ", agreeandcontinue="
 				+ agreeandcontinue + "]";
+	}
+
+	public String getAvunav() {
+		return avunav;
+	}
+
+	public void setAvunav(String avunav) {
+		this.avunav = avunav;
 	}
 
 	

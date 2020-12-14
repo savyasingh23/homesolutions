@@ -34,7 +34,7 @@ import pojos.Worktodo;
 public class WebsiteController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Signupdao signupdao;
-    private String fn,ln,g,contactnum,email1,password1,payment,st,c,add,anc,d,t,cn,contactnumreg;int pin;
+    private String fn,ln,g,contactnum,email1,password1,payment,st,c,add,anc,d,t,cn,contactnumreg,bname,cepr;int pin;
     public void init() {
         signupdao = new Signupdao();
     }
@@ -74,6 +74,11 @@ public class WebsiteController extends HttpServlet {
 								e1.printStackTrace();
 								}
 		    				break;
+		    case "/avunav":bname=request.getParameter("bname");
+		    				cepr=request.getParameter("contnum");
+		    				System.out.print(bname);
+		    				epr(request,response);
+		    				break;
 			case "/forgetpassword":
 								try {
 										forgotPassword(request, response);
@@ -81,12 +86,7 @@ public class WebsiteController extends HttpServlet {
 											e.printStackTrace();
 										}
 		    				break;
-			case "/formconfirm":String name=(String) request.getAttribute("firstname");
-									System.out.println(name);
-				
-				response.sendRedirect("eu.jsp");
-				
-									break;
+		
 						
 			case "/userpage2":cn=request.getParameter("contnum");
 								contactnumreg=request.getParameter("contnumreg");
@@ -114,6 +114,52 @@ public class WebsiteController extends HttpServlet {
 
 
 
+
+private void epr(HttpServletRequest request, HttpServletResponse response) {
+	String b=bname;
+	String contnum=cepr;
+	Signupqueries sq = new Signupqueries();
+	boolean bool=sq.changeAvuav(b, contnum);
+	System.out.println(bool);
+	Transaction t = null;
+ 	Signup ep = null;
+     try  {
+     	SessionFactory sf = Hibernateutil.getSessionFactory();
+     	Session s = sf.openSession();
+     	t = s.beginTransaction();
+         ep = (Signup) s.createQuery("FROM Signup S WHERE S.contnum = :contnum").setParameter("contnum", contnum).uniqueResult();
+
+           t.commit();
+     } catch (Exception e) {
+         if (t != null) {
+             t.rollback();
+         }
+         e.printStackTrace();
+     }
+ 	
+     request.setAttribute("firstname", ep.getFirstname());
+  	request.setAttribute("lastname", ep.getLastname());
+  	request.setAttribute("pincode", ep.getPincode());
+  	request.setAttribute("gender", ep.getGender());
+  	request.setAttribute("city", ep.getCity());
+  	request.setAttribute("state", ep.getState());
+  	request.setAttribute("address", ep.getAddress());
+  	request.setAttribute("signedupasa", ep.getSignedupasa());
+  	request.setAttribute("email", ep.getEmail());
+  	request.setAttribute("contnum", ep.getContnum());
+  	request.setAttribute("avunav", ep.getAvunav());
+
+  	RequestDispatcher rd = request.getRequestDispatcher("epr.jsp");
+      try {
+		rd.forward(request, response);
+	} catch (ServletException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} 
+	}
 
 private void eprpage(HttpServletRequest request, HttpServletResponse response) {
 	Worktodohql whql = new Worktodohql();
@@ -192,7 +238,8 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
 	String lastname=ln;
 	String gender=g;
 	String contnum=contactnum;
-	String agreeandcontinue=anc;			
+	String agreeandcontinue=anc;
+	String avunav=null;
 	 Signup signup = new Signup();
 	 Signupdao signupdao = new Signupdao();
 	 signup.setFirstname(firstname);
@@ -207,6 +254,7 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
      signup.setPincode(pincode);
      signup.setState(state);
      signup.setAgreeandcontinue(agreeandcontinue);
+     signup.setAvunav(avunav);
      signupdao.saveUsers(signup);
      
      Transaction t = null;
@@ -252,6 +300,8 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
          	request.setAttribute("signedupasa", ep.getSignedupasa());
          	request.setAttribute("email", ep.getEmail());
          	request.setAttribute("contnum", ep.getContnum());
+         	request.setAttribute("avunav", ep.getAvunav());
+
          	RequestDispatcher rd = request.getRequestDispatcher("epr.jsp");
              rd.forward(request, response); 
 
@@ -313,7 +363,10 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
             	request.setAttribute("signedupasa", ep.getSignedupasa());
             	request.setAttribute("email", ep.getEmail());
             	request.setAttribute("contnum", ep.getContnum());
+             	request.setAttribute("avunav", ep.getAvunav());
+
             	RequestDispatcher rd = request.getRequestDispatcher("epr.jsp");
+            	
                 rd.forward(request, response); 
 
         	}

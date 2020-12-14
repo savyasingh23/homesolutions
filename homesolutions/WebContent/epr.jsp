@@ -207,12 +207,13 @@
 			<h4><i class="fas fa-edit 3x"><span style="color:black;">${contnum}</span></i></h4>
 			
 			</div></div><br><br>
-
-			<div><button title="click here" onclick="openBankDetail()" class="button1"><li><h3>Bank Details</h3></button></li>
-			<div id="detail" style="display:none">
-			<h4><i class="fas fa-edit 3x"><span style="color:black;">${bankdetails}</span></i></h4>
+			<div><button title="click here" onclick="openAv()" class="button1"><li><h3>Av / UnAv</h3></button></li>
+			<div id="avunav" style="display:none">
+			<h4><i class="fas fa-edit 3x"><span style="color:black;">${avunav}</span></i></h4>
 			
-			</div></div><br><br>	
+			</div></div><br><br>
+
+						
 			<div><a href="signin.jsp"><button title="click here" class="button1"><li><h3>Log out</h3></button></a></li>
 			</div><br><br>							
        </ul>
@@ -222,13 +223,14 @@
 		<div id="progress"><center><h1>Progress</h1></center>
 	
 			<h2><i class="fas fa-home 2x"></i>Home</h2></div>
-		<div><button class="btnn" onclick="aua()">Available</button>
-			<button class="btnn" onclick="una()">Unavailable</button></div>
+			<form action="<%=request.getContextPath() %>/avunav?contnum=<%=request.getAttribute("contnum") %>" method="post" id="form">
+		<div><button class="btnn" onclick="aua()" name="bname" value="available">Available</button>
+			<button class="btnn" onclick="una()" name="bname" value="unavailable">Unavailable</button></div>
 			<div id="unavailable" style="display:none">
 				<h4>Unavailable  <i class="fas fa-edit 3x"></i></h4>
 			</div><div id="available" style="display:none">
 				<h4>Available  <i class="fas fa-edit 3x"></i></h4>
-			</div>
+			</div></form>
 			
 	<table>
 	
@@ -358,6 +360,13 @@ function openFName(){
   } else {
     h.style.display = "none";
   }}
+  function openAv(){
+	  	var e = document.getElementById("avunav");
+		if (e.style.display == "none") {
+	    e.style.display = "block";
+	  } else {
+	    e.style.display = "none";
+	  }}
   function aua(){
 	  	var h = document.getElementById("available");
 	  	var i = document.getElementById("unavailable");
@@ -367,7 +376,10 @@ function openFName(){
 	  } else {
 	    h.style.display = "none";
 	  }
-		i.style.display="none";}
+		i.style.display="none";
+		alert("You clicked on available");
+		document.getElementById("form").submit();
+		}
   function una(){
 	  	var h = document.getElementById("unavailable");
 	  	var i = document.getElementById("available");
@@ -377,7 +389,9 @@ function openFName(){
 	  } else {
 	    h.style.display = "none";
 	  }
-		i.style.display="none";}
+		i.style.display="none";
+		alert("You clicked on unavailable");
+		document.getElementById("form").submit();}
 	function openform() {
 		  document.getElementById("myform").style.display = "block";
 		}

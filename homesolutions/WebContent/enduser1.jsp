@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User's page 1</title>
+    <title>Plumber</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -294,9 +294,18 @@ while(resultset.next()){
                             <tr><p><%=resultset.getString("lastname") %></p></tr>
                             <tr><p><%=resultset.getString("email") %></p></tr>
                            <tr> <p><%=resultset.getString("contnum") %></p></tr>
+                        	<tr> <p><b><%=resultset.getString("avunav") %></b></p></tr><br>
+                        	<%  if(resultset.getString("avunav").equals("available")){
                         
-                            <a href="userpage2.jsp?contnum=<%=resultset.getString("contnum") %>">Select</a>
+                        %>
+                            <a href="userpage2.jsp?contnum=<%=resultset.getString("contnum")%>&&pincode=<%=request.getParameter("pincode")%>&&cont=<%=request.getParameter("contnum")%>">Select</a>
+                              <%}
+                        else {
                              
+                             %>
+                              <a href="#" >Select</a>
+                             <%
+                             }%>
                                </table>
                         
                         

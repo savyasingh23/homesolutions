@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User's page 2</title>
+    <title>Form</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -205,63 +205,10 @@ html,body{
        
     </style>
     
-     
-    <div id="nav"></div>
-    <div id="back">
-        <div id="left">
-            <h2>User's Information</h2>
-            
-            <form action="">
-                <div id="bt">
-                    <button id="rbt">First Name</button>
-                    <div class="details" id="details1"></div>
-                </div>
-                <div id="bt">
-                    <button id=>Last Name</button>
-                    <div class="details" id="details2"></div>
-                </div>
-
-                <div id="bt">
-                    <button >Phone Number</button>
-                    <div class="details" id="details3"></div>
-                </div>
-                <div id="bt">
-                    <button >Address</button>
-                    <div class="details" id="details4"></div>
-                </div>
-                <div id="bt">
-                    <button>City</button>
-                    <div class="details" id="details5"></div>
-                </div>
-                <div id="bt">
-                    <button>State</button>
-                    <div class="details" id="details6"></div>
-                </div>
-                <div id="bt">
-                    <button >Pincode</button>
-                    <div class="details" id="details7"></div>
-                </div>
-                <div id="bt">
-                    <button >Signed up as</button>
-                    <div class="details" id="details8"></div>
-                </div>
-                <div id="bt">
-                    <button id=>Gender</button>
-                    <div class="details" id="details9"></div>
-                </div>
-
-                <div id="bt">
-                    <button >Log out</button>
-                </div>
-
-
-
-            </form>
-        </div>
-        <div id="right">
-           
-<%
-String contnum=request.getParameter("contnum");
+       
+ <%
+String pin=request.getParameter("pincode");
+String contnum = request.getParameter("cont");
 String driverName = "com.mysql.cj.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://localhost:3306/homesolutions?useSSL=false";
 String userId = "root";
@@ -270,12 +217,85 @@ String password = "sanyasavya";
 Connection connection = null;
 Statement statement = null;
 ResultSet resultset = null;
-
+%>
+<%
 try{ 
 	Class.forName(driverName);
 connection = DriverManager.getConnection(connectionUrl, userId, password);
 statement=connection.createStatement();
 String sql ="SELECT * FROM signup WHERE contnum="+contnum;
+resultset = statement.executeQuery(sql);
+while(resultset.next()){
+%>
+    <div id="nav"></div>
+    <div id="back">
+        <div id="left">
+            <h2>User's Information</h2>
+            
+            <form action="">
+                <div id="bt">
+                    <button id="rbt" >First Name</button>
+                    <div class="details" id="details1" style="text-align:center;"><span style="color:black;"><%=resultset.getString("firstname") %></span></div>
+                </div>
+                <div id="bt">
+                    <button >Last Name</button>
+                    <div class="details" id="details2" style="text-align:center;"><span style="color:black;"><%=resultset.getString("lastname") %></span></div>
+                </div>
+
+                <div id="bt">
+                    <button  >Phone Number</button>
+                    <div class="details" id="details3" style="text-align:center;"><span style="color:black;"><%=resultset.getString("contnum") %></span></div>
+                </div>
+                <div id="bt">
+                    <button >Address</button>
+                    <div class="details" id="details4" style="text-align:center;"><span style="color:black;"><%=resultset.getString("address") %></span></div>
+                </div>
+                <div id="bt">
+                    <button >City</button>
+                    <div class="details" id="details5" style="text-align:center;"><span style="color:black;"><%=resultset.getString("city") %></span></div>
+                </div>
+                <div id="bt">
+                    <button >State</button>
+                    <div class="details" id="details6" style="text-align:center;"><span style="color:black;"><%=resultset.getString("state") %></span></div>
+                </div>
+                <div id="bt">
+                    <button >Pincode</button>
+                    <div class="details" id="details7" style="text-align:center;"><span style="color:black;"><%=resultset.getString("pincode") %></span></div>
+                </div>
+                <div id="bt">
+                    <button  >Signed up as</button>
+                    <div class="details" id="details8" style="text-align:center;"><span style="color:black;"><%=resultset.getString("signedupasa") %></span></div>
+                </div>
+                <div id="bt">
+                    <button >Gender</button>
+                    <div class="details" id="details9" style="text-align:center;"><span style="color:black;"><%=resultset.getString("gender") %></span></div>
+                </div>
+
+                <div id="bt">
+                    <button onclick="signin.jsp">Log out</button>
+                </div>
+
+
+
+            </form>
+        </div>
+         <% 
+}
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+        <div id="right">
+           
+<%
+String cont=request.getParameter("contnum");
+
+try{ 
+	Class.forName(driverName);
+connection = DriverManager.getConnection(connectionUrl, userId, password);
+statement=connection.createStatement();
+String sql ="SELECT * FROM signup WHERE contnum="+cont;
 resultset = statement.executeQuery(sql);
 while(resultset.next()){
 %>
@@ -296,11 +316,11 @@ while(resultset.next()){
                         <p><%=resultset.getString("firstname") %></p>
                         <p><%=resultset.getString("lastname") %></p>
                         <p><%=resultset.getString("email") %></p><br><br>
-                        <p><input type="number" value=<%=resultset.getString("contnum") %> name="contnumreg" ></p>
+                        <p><input type="number" value=<%=resultset.getString("contnum") %> name="contnumreg" readonly ></p>
                         <p><input type="number" placeholder="Your Contact number" name="contnum" > </p>
                         <p><input type="date" id="birthday" name="doc" > </p>
                         <p><input type="time" id="appt" name="time"> </p>
-						<p><input type="text" id="appt" name="payment" value="CASH"> </p>
+						<p><input type="text" id="appt" name="payment" value="CASH" readonly> </p>
 						
                     </div>
                 </div>
@@ -309,7 +329,7 @@ while(resultset.next()){
             </form>
              <div id="buttons">
                     <button onclick="formSubmit()">Confirm</button>
-                    <button "><a href="#">Cancel</a></button>
+                    <button ><a href="enduser3.jsp?contnum=<%=request.getParameter("cont")%>&&pincode=<%=request.getParameter("pincode")%>">Cancel</a></button>
                 </div>
             
  <% 
