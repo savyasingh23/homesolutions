@@ -93,6 +93,7 @@ public class WebsiteController extends HttpServlet {
 								d=request.getParameter("doc");
 								t=request.getParameter("time");
 								payment=request.getParameter("payment");
+								
 								System.out.println(cn+d+t+contactnumreg);
 								eprpage(request,response);
 								userpage(request,response);
@@ -239,7 +240,7 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
 	String gender=g;
 	String contnum=contactnum;
 	String agreeandcontinue=anc;
-	String avunav=null;
+	String avunav="available";
 	 Signup signup = new Signup();
 	 Signupdao signupdao = new Signupdao();
 	 signup.setFirstname(firstname);

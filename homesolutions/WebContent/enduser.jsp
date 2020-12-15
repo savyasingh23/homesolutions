@@ -73,7 +73,7 @@ html,body{
     margin-top: 10px;
     border: none 2px #fff;
     color: #fff;
-    background-color: red;
+    background-color:transparent;
     font-weight: 600;
     font-size: 15px;
 

@@ -425,8 +425,8 @@ input[type=checkbox] {
     	    return false;
     	  }
     	  var d = document.forms["form"]["pincode"].value;
-    	  if (d == "") {
-    	    alert(" Pincode must be filled out");
+    	  if (d == "" || d.value.length!=6) {
+    	    alert(" Pincode must be filled out or Invalid Pincode");
     	    return false;
     	  }
     	  var e = document.forms["form"]["email"].value;
@@ -440,7 +440,7 @@ input[type=checkbox] {
     	  if((!(document.getElementById("mycheck").checked)) && card.selectedIndex != 0) {
     	       alert("Please check the check box");
     	  }
-    	  else if(document.getElementById("mycheck").checked && card.selectedIndex != 0 ) {
+    	  else if(document.getElementById("mycheck").checked && card.selectedIndex != 0 && x!="" && y!="" && z!="" && a!="" && b!="" && c!="" && d!="" && e!="" && d.value.length==6) {
   			document.getElementById("form1").submit();
   			}
     	  else  {

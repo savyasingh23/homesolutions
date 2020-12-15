@@ -322,9 +322,9 @@ background-color: rgb(255, 180, 20);
       function val() {
     	  var mobile = document.getElementById("contnum");
     	            
-  	    if(mobile.value.length!=10){
+  	    if(mobile.value.length!=10 || mobile==""){
   	       
-  	       alert("Invalid Contact Number");
+  	       alert("Contact Number should br filled out or Invalid Contact Number");
   	    }
   	  var d = document.forms["form"]["contnum"].value;
 	  if (d == "") {
@@ -341,7 +341,7 @@ background-color: rgb(255, 180, 20);
 	    alert(" OTP must be filled out");
 	    return false;
 	  }
-	  if(mobile!="" && d!="" && e!="" && f!=""){
+	  if(mobile!="" && d!="" && e!="" && f!="" && mobile.value.length==10){
 		document.getElementById("form").submit();}
 
       }

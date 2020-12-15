@@ -14,7 +14,7 @@
     	
 
      body{
-	background-image: url(background-1.png);
+
 	background-repeat: no-repeat;
 	background-size:100%;
    background-color: white;
@@ -30,7 +30,9 @@
 	left:0;
 	width: 100%;
 	height:100%;
-	background: rgba(0,0,0,0.3);
+    background-image: url("https://logopond.com/logos/d25e90c92d8bd82de359f9bb64d7fcba.png");
+    background-size: cover;
+
 }
 hr{
 	height: 1px;
@@ -66,11 +68,11 @@ hr{
         <a class="nav-link text-outline-danger text-white " href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link text-white" href="#">About Us</a>
+        <a class="nav-link text-white" href="#about">About Us</a>
       </li>
       
       <li class="nav-item active">
-        <a class="nav-link text-white " href="#">Contact Us</a>
+        <a class="nav-link text-white " href="#features">Features</a>
       </li>
 
       <li class="nav-item active">
@@ -97,7 +99,7 @@ hr{
 <br>
 <section>
    <div class="container text-center">
-    <h1 class="display-3">About</h1>
+    <h1 class="display-3" id="about">About</h1>
     <hr>
     <div class="row">
     <div class="col-md-4">
@@ -150,12 +152,12 @@ hr{
   <br>
   <section>
       <div class="container text-center">
-      	<h1 class="display-3">Features</h1>
+      	<h1 class="display-3" id="features">Features</h1>
       	<hr>
       	<div class="row">
       		<div class="col-md-4">
       			<div class="card">
-      				<img src="\Minor-Project-main\img3.jpg" class="card-img-top">
+      				<img src="https://www.training.com.au/wp-content/uploads/plumbing-courses.png" class="card-img-top">
       				<div class="card-body">
       					<h5 class="card-title text-warning">Plumbers</h5>
       					<p class="text">Our aim is to provide best available plumbers to our customers in their nearby locations conveniently.</p>
@@ -165,7 +167,7 @@ hr{
       </div>
           <div class="col-md-4">
       			<div class="card">
-      				<img src="/Minor-Project-main/img4.jpg" class="card-img-top">
+      				<img src="https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" class="card-img-top">
       				<div class="card-body">
       					<h5 class="card-title text-warning">Electricians</h5>
       					<p class="text">Our aim is to provide best available electricians to our customers in their nearby locations conveniently..</p>
@@ -176,7 +178,7 @@ hr{
       		</div>
       		<div class="col-md-4">
       			<div class="card">
-      				<img src="/Minor-Project-main/img6.jpg" class="card-img-top">
+      				<img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80" class="card-img-top">
       				<div class="card-body">
       					<h5 class="card-title text-warning">Repairers</h5>
       					<p class="text">Our aim is to provide best available repairers to our customers in their nearby locations conveniently.</p>

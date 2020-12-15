@@ -118,19 +118,21 @@ html,body{
     margin-bottom: 30px;
 }
 
-#right form input[type=submit]{
-    width: 150px;
+
+
+#right form #button{
+    width: 400px;
     height: 50px;
     border: none;
     outline: none;
-    margin-left: 120px;
+    margin-left: 4px;
     background-color:  rgb(248, 193, 73);
     color: #fff;
     font-weight: 600;
     font-size: 15px;
 }
 
-#right form button:hover{
+#right form #button:hover{
     font-size: 16px;
     background-color: rgb(255, 180, 20);
 
@@ -222,7 +224,9 @@ html,body{
               <div class="line"></div>
               <input type="password" placeholder="Password" name ="password" id="password">
               <div class="line"></div>
-              <input type="button" value="Sign in" onclick="val()">
+              <input id="button" type="button" value="Sign in" onclick="val()">
+
+            
               <br>
               <a href="forgetpassword.jsp" >forgot password?</a>
 			    <span style="color:red;">${errMsg}</span>
