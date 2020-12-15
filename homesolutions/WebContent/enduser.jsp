@@ -232,7 +232,6 @@ html,body{
                 </div>
 
                 <div id="bt">
-                    <button onclick="signin.jsp">Log out</button>
                 </div>
 
 
@@ -242,9 +241,11 @@ html,body{
         <div id="right">
             
             <div id="links">
+            	
                 <a href="enduser3.jsp?contnum=<%=request.getAttribute("contnum") %>&&pincode=<%=request.getAttribute("pincode")%>">Electricians</a>
                 <a href="enduser1.jsp?contnum=<%=request.getAttribute("contnum") %>&&pincode=<%=request.getAttribute("pincode")%>">Plumbers</a>
                 <a href="enduser2.jsp?contnum=<%=request.getAttribute("contnum") %>&&pincode=<%=request.getAttribute("pincode")%>">Repairers</a>
+            	<a href="signin.jsp">Log out</a>
             </div>
                          <%
 int pin=(Integer)request.getAttribute("pincode");
