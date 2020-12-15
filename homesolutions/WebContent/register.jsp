@@ -425,7 +425,7 @@ input[type=checkbox] {
     	    return false;
     	  }
     	  var d = document.forms["form"]["pincode"].value;
-    	  if (d == "" ) {
+    	  if (d == "" || d.length!=6) {
     	    alert(" Pincode must be filled out or Invalid Pincode");
     	    return false;
     	  }
