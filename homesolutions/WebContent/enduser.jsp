@@ -241,8 +241,8 @@ html,body{
         <div id="right">
             
             <div id="links">
-            	
-                <a href="enduser3.jsp?contnum=<%=request.getAttribute("contnum") %>&&pincode=<%=request.getAttribute("pincode")%>">Electricians</a>
+            	<a href="yourbookings.jsp?contnum=<%=request.getAttribute("contnum") %>&&pincode=<%=request.getAttribute("pincode")%>">Your Bookings</a>
+            	<a href="enduser3.jsp?contnum=<%=request.getAttribute("contnum") %>&&pincode=<%=request.getAttribute("pincode")%>">Electricians</a>
                 <a href="enduser1.jsp?contnum=<%=request.getAttribute("contnum") %>&&pincode=<%=request.getAttribute("pincode")%>">Plumbers</a>
                 <a href="enduser2.jsp?contnum=<%=request.getAttribute("contnum") %>&&pincode=<%=request.getAttribute("pincode")%>">Repairers</a>
             	<a href="signin.jsp">Log out</a>

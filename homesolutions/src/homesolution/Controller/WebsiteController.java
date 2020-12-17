@@ -34,7 +34,7 @@ import pojos.Worktodo;
 public class WebsiteController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Signupdao signupdao;
-    private String fn,ln,g,contactnum,email1,password1,payment,st,c,add,anc,d,t,cn,contactnumreg,bname,cepr;int pin;
+    private String fn,ln,g,contactnum,email1,password1,payment,st,c,add,cont,anc,d,t,cn,co,contactnumreg,bname,cepr,cod;int pin;
     public void init() {
         signupdao = new Signupdao();
     }
@@ -87,7 +87,11 @@ public class WebsiteController extends HttpServlet {
 										}
 		    				break;
 		
-						
+			case "/status":cod = request.getParameter("cod");
+							co=request.getParameter("w_id");
+							cont=request.getParameter("contnum");
+							status(request,response);
+							break;
 			case "/userpage2":cn=request.getParameter("contnum");
 								contactnumreg=request.getParameter("contnumreg");
 								d=request.getParameter("doc");
@@ -115,6 +119,53 @@ public class WebsiteController extends HttpServlet {
 
 
 
+
+private void status(HttpServletRequest request, HttpServletResponse response) {
+		int w_id=Integer.parseInt(co);
+		String contnum=cont;
+		String codq=cod;
+		Worktododao wd= new Worktododao();
+		boolean b=wd.changeStatus(codq, w_id);
+		System.out.println(b);
+		Transaction t = null;
+	 	Signup ep = null;
+	     try  {
+	     	SessionFactory sf = Hibernateutil.getSessionFactory();
+	     	Session s = sf.openSession();
+	     	t = s.beginTransaction();
+	         ep = (Signup) s.createQuery("FROM Signup S WHERE S.contnum = :contnum").setParameter("contnum", contnum).uniqueResult();
+
+	           t.commit();
+	     } catch (Exception e) {
+	         if (t != null) {
+	             t.rollback();
+	         }
+	         e.printStackTrace();
+	     }
+	 	
+	     request.setAttribute("firstname", ep.getFirstname());
+	  	request.setAttribute("lastname", ep.getLastname());
+	  	request.setAttribute("pincode", ep.getPincode());
+	  	request.setAttribute("gender", ep.getGender());
+	  	request.setAttribute("city", ep.getCity());
+	  	request.setAttribute("state", ep.getState());
+	  	request.setAttribute("address", ep.getAddress());
+	  	request.setAttribute("signedupasa", ep.getSignedupasa());
+	  	request.setAttribute("email", ep.getEmail());
+	  	request.setAttribute("contnum", ep.getContnum());
+	  	request.setAttribute("avunav", ep.getAvunav());
+
+	  	RequestDispatcher rd = request.getRequestDispatcher("epr.jsp");
+	      try {
+			rd.forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
 
 private void epr(HttpServletRequest request, HttpServletResponse response) {
 	String b=bname;
@@ -169,12 +220,14 @@ private void eprpage(HttpServletRequest request, HttpServletResponse response) {
 	String date=d;
 	String time=t;
 	String pay=payment;
+	String status="Pending";
 	 Worktodo w = new Worktodo();
 	 w.setContnum(contnum);
 	 w.setContnumreg(connumreg);
 	 w.setDate(date);
 	 w.setTime(time);
     w.setPayment(pay);
+    w.setStatus(status);
     w.setAddress(whql.checkUser(contnum));
      Worktododao wd=new Worktododao();
      wd.saveUsers(w);

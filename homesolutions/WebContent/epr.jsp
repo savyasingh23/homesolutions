@@ -202,11 +202,8 @@
 			<form action="<%=request.getContextPath() %>/avunav?contnum=<%=request.getAttribute("contnum") %>" method="post" id="form">
 		<div><button class="btnn" onclick="aua()" name="bname" value="available">Available</button>
 			<button class="btnn" onclick="una()" name="bname" value="unavailable">Unavailable</button></div>
-			<div id="unavailable" style="display:none">
-				<h4>Unavailable  <i class="fas fa-edit 3x"></i></h4>
-			</div><div id="available" style="display:none">
-				<h4>Available  <i class="fas fa-edit 3x"></i></h4>
-			</div></form>
+			
+				</form>
 			
 	<table>
 	
@@ -217,6 +214,7 @@
 				<th>Date to come</th>
 				<th>Arriving time</th>
 				<th>Mode of Payment</th>
+				<th>Status</th>
 			</tr>
 			<%
 String contnum=(String)request.getAttribute("contnum");
@@ -244,7 +242,26 @@ while(resultset.next()){
 				<td><%=resultset.getString("date") %></td>
 				<td><%=resultset.getString("time") %></td>
 				<td><%=resultset.getString("payment") %></td>
-				
+				<%if(resultset.getString("status").equals("Pending")) {
+					%>
+				<td>
+				<form action="<%=request.getContextPath() %>/status?contnum=<%=request.getAttribute("contnum") %>&&w_id=<%=resultset.getString("w_id") %>" method="post" id="form1">
+		<div><button class="btnn" onclick="cod()" name="cod" value="Confirm">Confirm</button>
+			<button class="btnn" onclick="doc()" name="cod" value="Decline">Decline</button></div>
+			<div id="unavailable" style="display:none">
+				<h4>Confirm <i class="fas fa-edit 3x"></i></h4>
+			</div><div id="available" style="display:none">
+				<h4>Decline  <i class="fas fa-edit 3x"></i></h4>
+			</div></form>
+				</td>
+				<%} 
+				else {
+					%>
+				<td><%=resultset.getString("status") %></td>
+					
+					<%
+				}
+				%>
 			</tr>
 			 <% 
 }
@@ -375,7 +392,12 @@ function openFName(){
 		function closeform() {
 		  document.getElementById("myform").style.display = "none";
 		}
-
+		function cod(){
+		 			alert("You Confirmed their request.");
+			document.getElementById("form1").submit();}
+		function doc(){
+ 			alert("You Declined their request.");
+	document.getElementById("form1").submit();}
   
 
 </script>

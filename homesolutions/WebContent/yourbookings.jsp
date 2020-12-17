@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electricians</title>
+    <title>Your Bookings</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -73,7 +73,7 @@ html,body{
     margin-top: 10px;
     border: none 2px #fff;
     color: #fff;
-    background-color: transparent;
+    background-color:transparent;
     font-weight: 600;
     font-size: 15px;
 
@@ -132,61 +132,80 @@ html,body{
     font-weight: 600;
 }
 
-#registeruserlist{
 
-}
-
-#registeruser{
-    padding-left: 50px;
-    padding-top: 50px;
-    margin-top: 10px;
+#right #formdet{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color:transparent;
+    padding-left: 50px;
+    padding-right: 300px;
+    padding-top: 100px;
 }
 
-#registeruser #img{
-    width: 110px;
-    height: 120px;
-    background-color: gray;
+#right #formdet p{
+    margin-bottom: 20px;
+
 }
 
-#registeruser #info{
-}
-
-#registeruser p{
-    font-size: 14px;
-    font-weight: 550;
-    color: rgb(65, 64, 64);
-    margin-top: 20px;
-    margin-right: 530px;
-}
-
-#registeruser #info button{
-    width: 100px;
-    height: 30px;
+#right #formdet input{
+    height: 20px;
     border: none;
     outline: none;
-    margin-top: 20px;
-    margin-bottom: -50px;
-    margin-left: 150px;
+    width: 300px;
+    background-color: rgb(250, 235, 208);
+}
+
+
+
+
+#right #buttons button:nth-child(1){
+    width: 150px;
+    height: 50px;
+    border: none;
+    outline: none;
+    margin-left: 120px;
     background-color:  rgb(248, 193, 73);
     color: #fff;
     font-weight: 600;
-    font-size: 14px;
-}
-
-#registeruser #info button:hover{
     font-size: 15px;
-    background-color: rgb(255, 180, 20);
-
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 
 }
 
+#right #buttons button:nth-child(2){
+    width: 150px;
+    height: 50px;
+    border: none;
+    outline: none;
+    margin-left: 120px;
+    background-color:  rgb(248, 193, 73);
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    position: absolute;
+    top: 75%;
+    left: 62%;
+    transform: translate(-50%,-50%);
 
+}
 
+#right #buttons button:nth-child(1):hover{
+    font-size: 16px;
+    background-color: rgb(255, 180, 20);
+}
+
+#right #buttons button:nth-child(2):hover{
+    font-size: 16px;
+    background-color: rgb(255, 180, 20);
+}
+       
     </style>
     
+       
  <%
 String pin=request.getParameter("pincode");
 String contnum = request.getParameter("contnum");
@@ -198,6 +217,9 @@ String password = "sanyasavya";
 Connection connection = null;
 Statement statement = null;
 ResultSet resultset = null;
+ResultSet resultSet = null;
+ResultSet rs = null;
+
 %>
 <%
 try{ 
@@ -253,6 +275,7 @@ while(resultset.next()){
                 </div>
 
                 <div id="bt">
+                    <button onclick="signin.jsp">Log out</button>
                 </div>
 
 
@@ -265,64 +288,82 @@ connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
-%>
+%>		<br><br><br>
         <div id="right">
-            
-            <div id="links">
-            	<a href="yourbookings.jsp?contnum=<%=request.getParameter("contnum") %>&&pincode=<%=request.getParameter("pincode")%>">Your Bookings</a>          
-                <a href="enduser3.jsp?contnum=<%=request.getParameter("contnum")%>&&pincode=<%=request.getParameter("pincode")%>">Electricians</a>
-                <a href="enduser1.jsp?contnum=<%=request.getParameter("contnum") %>&&pincode=<%=request.getParameter("pincode")%>">Plumbers</a>
-                <a href="enduser2.jsp?contnum=<%=request.getParameter("contnum") %>&&pincode=<%=request.getParameter("pincode")%>">Repairers</a>
-  				<a href="signin.jsp">Log out</a>
-  				          
-            </div>
-                        
+           <table>
+	
+			<tr>
+
+				<th>Contact Number</th>
+				<th>Name</th>
+				<th>Electrician/Plumber/Repairer</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Status</th>
+			</tr>
 <%
+
 try{ 
 	Class.forName(driverName);
 connection = DriverManager.getConnection(connectionUrl, userId, password);
 statement=connection.createStatement();
-String sql ="SELECT * FROM signup WHERE signedupasa='Electrician' AND pincode="+pin;
+String sql ="SELECT * FROM worktodo WHERE contnum="+contnum;
 resultset = statement.executeQuery(sql);
 while(resultset.next()){
 %>
-            
-            <div id="registeruserlist">
-                <div id="registeruser">
-                    <div id="img"></div>
-                    <div id="info">
-                        <table>
-                            <tr><p><%=resultset.getString("firstname") %></p></tr>
-                            <tr><p><%=resultset.getString("lastname") %></p></tr>
-                            <tr><p><%=resultset.getString("email") %></p></tr>
-                           <tr> <p><%=resultset.getString("contnum") %></p></tr>
-                           <tr> <p><b><%=resultset.getString("avunav") %></b></p></tr><br>
-                         <%  if(resultset.getString("avunav").equals("available")){
-                        
-                        %>
-                            <a href="userpage2.jsp?contnum=<%=resultset.getString("contnum")%>&&pincode=<%=request.getParameter("pincode")%>&&cont=<%=request.getParameter("contnum")%>">Select</a>
-                             <%}
-                        else {
-                             
-                             %>
-                              <a href="#" >Select</a>
-                             <%
-                             }%>
-                               </table>
-                        
-                        
-
-                    </div>
-                </div>
-                
-            </div>
-              <% 
+            <tr>
+				
+				<td><%=resultset.getString("contnumreg") %></td>
+				<%
+				try{ 
+					Class.forName(driverName);
+				connection = DriverManager.getConnection(connectionUrl, userId, password);
+				statement=connection.createStatement();
+				String sql1 ="SELECT * FROM signup WHERE contnum="+resultset.getString("contnumreg");
+				resultSet = statement.executeQuery(sql1);
+				while(resultSet.next()){
+				%>
+				<td><%=resultSet.getString("firstname")+" "+resultSet.getString("lastname") %></td>
+				<td><%=resultSet.getString("signedupasa") %></td>
+				
+				<%
+				}
+				connection.close();
+				} catch (Exception e) {
+				e.printStackTrace();
+				}
+				%>
+				<td><%=resultset.getString("date") %></td>
+				<td><%=resultset.getString("time") %></td>
+				<%
+				try{ 
+					Class.forName(driverName);
+				connection = DriverManager.getConnection(connectionUrl, userId, password);
+				statement=connection.createStatement();
+				String sql2 ="SELECT * FROM worktodo WHERE w_id="+resultset.getString("w_id");
+				rs= statement.executeQuery(sql2);
+				while(rs.next()){
+				%>
+				<td><%=rs.getString("status") %></td>
+				<%
+				}
+				connection.close();
+				} catch (Exception e) {
+				e.printStackTrace();
+				}
+				%>
+				
+            </tr>
+ <% 
 }
 connection.close();
 } catch (Exception e) {
 e.printStackTrace();
 }
 %>
+  
+          </table>    
+          <a href="enduser3.jsp?contnum=<%=request.getParameter("contnum") %>&&pincode=<%=request.getParameter("pincode")%>"  >Back</a>            
              
         </div>
     </div>
@@ -330,7 +371,31 @@ e.printStackTrace();
 
 
     <script>
-    
+        function formSubmit() {
+        	var b = document.forms["form"]["contnum"].value;
+      	  if (b == "") {
+      	    alert(" Contact Number  must be filled out");
+      	    return false;
+      	  }
+      	  var c = document.forms["form"]["doc"].value;
+      	  if (c == "") {
+      	    alert(" Date of Coming must be filled out");
+      	    return false;
+      	  }
+      	  var d = document.forms["form"]["time"].value;
+      	  if (d == "") {
+      	    alert(" Time must be filled out");
+      	    return false;
+      	  }
+      	 
+      	 if(b!="" && c!="" && d!="") {
+      		document.getElementById("form").submit();
+      		alert("Your Request is taken down");
+      	 }
+      	  
+        }
+        	
+        
 
     </script>
 

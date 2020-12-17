@@ -1,6 +1,5 @@
 package pojos;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,12 +17,12 @@ public class Worktodo {
 	private String time;
 	private String payment;
 	private String address;
-	
+	private String status;
 	public Worktodo() {
 		
 	}
 
-	public Worktodo(int w_id, String contnum, String contnumreg, String date, String time,String payment,String address) {
+	public Worktodo(int w_id, String contnum, String contnumreg, String date, String time,String payment,String address,String status) {
 		this.w_id = w_id;
 		this.contnum = contnum;
 		this.contnumreg = contnumreg;
@@ -31,6 +30,7 @@ public class Worktodo {
 		this.time = time;
 		this.payment = payment;
 		this.address=address;
+		this.status=status;
 
 	}
 
@@ -94,6 +94,14 @@ public class Worktodo {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 

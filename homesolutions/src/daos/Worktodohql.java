@@ -3,6 +3,7 @@ package daos;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import hibernate.util.Hibernateutil;
 import pojos.Signup;
@@ -31,4 +32,5 @@ public String checkUser(String contnum) {
         }
         return "";
     }
+
 }
