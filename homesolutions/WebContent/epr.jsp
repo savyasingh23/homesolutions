@@ -210,6 +210,7 @@
 			<tr>
 
 				<th>Customer's Contact Number</th>
+				<th>Customer's Name</th>
 				<th>Customer's Address</th>
 				<th>Date to come</th>
 				<th>Arriving time</th>
@@ -226,6 +227,8 @@ String password = "sanyasavya";
 Connection connection = null;
 Statement statement = null;
 ResultSet resultset = null;
+ResultSet resultSet = null;
+
 
 try{ 
 	Class.forName(driverName);
@@ -238,6 +241,25 @@ while(resultset.next()){
 			<tr>
 				
 				<td><%=resultset.getString("contnum") %></td>
+				<%
+
+
+try{ 
+	Class.forName(driverName);
+connection = DriverManager.getConnection(connectionUrl, userId, password);
+statement=connection.createStatement();
+String sql1 ="SELECT * FROM signup WHERE contnum="+resultset.getString("contnum");
+resultSet = statement.executeQuery(sql1);
+while(resultSet.next()){
+%>
+				<td><%=resultSet.getString("firstname")+" "+resultSet.getString("lastname") %></td>
+ <% 
+}
+connection.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
 				<td><%=resultset.getString("address") %></td>
 				<td><%=resultset.getString("date") %></td>
 				<td><%=resultset.getString("time") %></td>
