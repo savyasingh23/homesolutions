@@ -106,7 +106,7 @@ html,body{
 #right #links{
     height: 20px;
     margin-top: 50px;
-    margin-left: 500px;
+    margin-left: 300px;
     margin-right: 50px;
     display: flex;
     align-items: center;

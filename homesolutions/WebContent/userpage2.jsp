@@ -367,7 +367,7 @@ e.printStackTrace();
       	 
       	 if(b!="" && c!="" && d!="") {
       		document.getElementById("form").submit();
-      		alert("Your Request is taken down");
+      		alert("Your Request has been taken down");
       	 }
       	  
         }

@@ -202,6 +202,39 @@ html,body{
     font-size: 16px;
     background-color: rgb(255, 180, 20);
 }
+
+table {
+    margin-top: 60px;
+    margin-left: 30px;
+    border-collapse: collapse;
+    width: 95%;
+  }
+
+th{
+    
+}
+
+td, th {
+    text-align: left;
+    padding: 8px;
+    color: #707070;
+}
+
+a{
+    text-decoration: none;
+    margin-top: 10px;
+    margin-left: 740px;
+    cursor: pointer;
+    padding: 20px;
+    position:absolute;
+    color: rgb(255, 180, 20);
+}
+
+a:hover{
+     color: rgb(255, 174, 0);
+     font-weight: 600;
+}
+
        
     </style>
     
@@ -290,6 +323,8 @@ e.printStackTrace();
 }
 %>		<br><br><br>
         <div id="right">
+            <a href="enduser3.jsp?contnum=<%=request.getParameter("contnum") %>&&pincode=<%=request.getParameter("pincode")%>"  >Back</a>            
+
            <table>
 	
 			<tr>
@@ -363,7 +398,6 @@ e.printStackTrace();
 %>
   
           </table>    
-          <a href="enduser3.jsp?contnum=<%=request.getParameter("contnum") %>&&pincode=<%=request.getParameter("pincode")%>"  >Back</a>            
              
         </div>
     </div>
@@ -371,34 +405,11 @@ e.printStackTrace();
 
 
     <script>
-        function formSubmit() {
-        	var b = document.forms["form"]["contnum"].value;
-      	  if (b == "") {
-      	    alert(" Contact Number  must be filled out");
-      	    return false;
-      	  }
-      	  var c = document.forms["form"]["doc"].value;
-      	  if (c == "") {
-      	    alert(" Date of Coming must be filled out");
-      	    return false;
-      	  }
-      	  var d = document.forms["form"]["time"].value;
-      	  if (d == "") {
-      	    alert(" Time must be filled out");
-      	    return false;
-      	  }
-      	 
-      	 if(b!="" && c!="" && d!="") {
-      		document.getElementById("form").submit();
-      		alert("Your Request is taken down");
-      	 }
-      	  
-        }
-        	
+        
         
 
     </script>
 
     
 </body>
-</html>
+</html>s
