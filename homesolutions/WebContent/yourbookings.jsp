@@ -307,9 +307,7 @@ while(resultset.next()){
                     <div class="details" id="details9" style="text-align:center;"><span style="color:black;"><%=resultset.getString("gender") %></span></div>
                 </div>
 
-                <div id="bt">
-                    <button onclick="signin.jsp">Log out</button>
-                </div>
+                
 
 
 
@@ -324,7 +322,6 @@ e.printStackTrace();
 %>		<br><br><br>
         <div id="right">
             <a href="enduser3.jsp?contnum=<%=request.getParameter("contnum") %>&&pincode=<%=request.getParameter("pincode")%>"  >Back</a>            
-
            <table>
 	
 			<tr>

@@ -447,7 +447,6 @@ private void createUsers2(HttpServletRequest request, HttpServletResponse respon
     	        } else {
     	            
     	            response.sendRedirect("register.jsp");
-    	           // response.sendRedirect("signin.jsp");
     	        }
     	    }
     private void forgotPassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

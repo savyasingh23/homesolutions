@@ -176,11 +176,11 @@ background-color: rgb(255, 180, 20);
     <div id="back">
         <div id="left">
             <h2>Sign Up</h2>
-            <form action="<%=request.getContextPath()%>/signup1"  method="post" id="form">
+            <form action="<%=request.getContextPath()%>/signup1"  id="form2">
               
-              <input type="number" placeholder="Contact number" name="contnum" id="contnum"  required> 
+              <input type="number" placeholder="Contact number" name="contnum" id="contnum" > 
               <div class="line"></div>
-              <input type="password" placeholder=" Create Password" name ="password" id="myInput" required>
+              <input type="password" placeholder=" Create Password" name ="password" id="myInput">
               <div class="line"></div>
               <input type="number" placeholder="Enter OTP" name ="otp">
               <div class="line"></div>
@@ -322,27 +322,25 @@ background-color: rgb(255, 180, 20);
       function val() {
     	  var mobile = document.getElementById("contnum");
     	            
-  	    if(mobile.value.length!=10 || mobile==""){
+  	    if(mobile.value.length!=10 || mobile.value==""){
   	       
-  	       alert("Contact Number should br filled out or Invalid Contact Number");
+  	       alert("Invalid Contact Number");
+  	       return false;
   	    }
-  	  var d = document.forms["form"]["contnum"].value;
-	  if (d == "") {
-	    alert(" Phone Number must be filled out");
-	    return false;
-	  }
-	  var e = document.forms["form"]["password"].value;
+  	  
+	  var e = document.forms["form2"]["password"].value;
 	  if (e == "") {
 	    alert(" Password must be filled out");
 	    return false;
 	  }
-	  var f = document.forms["form"]["otp"].value;
+	  var f = document.forms["form2"]["otp"].value;
 	  if (f == "") {
 	    alert(" OTP must be filled out");
 	    return false;
 	  }
-	  if(mobile!="" && d!="" && e!="" && f!="" && mobile.value.length==10){
-		document.getElementById("form").submit();}
+	  if(e!="" && f!="" && mobile.value.length==10){
+		document.getElementById("form2").submit();
+		}
 
       }
       function myFunction(){

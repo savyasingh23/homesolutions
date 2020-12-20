@@ -368,21 +368,22 @@ e.printStackTrace();
       	var today=new Date();
 		var date=new Date(document.forms["form"]["doc"].value);
 		var t = today.getHours()+":"+today.getMinutes();
-		date.setHours(0,0,0,0);
-		today.setHours(0,0,0,0);
+		
       	 if(date<today && date!=today) {
       		 
       		 alert("Invalid Date and Time");
       		 
       	 }
       	 if((d<=t) && (date.setHours(0,0,0,0)==today.setHours(0,0,0,0))){
-      		 alert("Invalid Time");
+      		 alert("Invalid Time .Also change your date other than today's date");
       	 }
-      		 
-      	 if(b!="" && c!="" && d!="" && (date>=today) && b.length==10 && (d>t)) {
-      		document.getElementById("form").submit();
-      		alert("Your Request has been taken down");
+      	 if(b!="" && c!="" && d!="" && b.length==10 && (date>today || ((date.setHours(0,0,0,0)==today.setHours(0,0,0,0)) && d>t))){
+      		      		     	
+      			document.getElementById("form").submit();
+          		alert("Your Request has been taken down");
+      		
       	 }
+      	 
       	  
         }
         	
