@@ -329,7 +329,7 @@ while(resultset.next()){
             </form>
              <div id="buttons">
                     <button onclick="formSubmit()">Confirm</button>
-                    <button ><a href="enduser3.jsp?contnum=<%=request.getParameter("cont")%>&&pincode=<%=request.getParameter("pincode")%>">Cancel</a></button>
+                    <button ><a href="enduser3.jsp?contnum=<%=request.getParameter("cont")%>&&pincode=<%=request.getParameter("pincode")%>" style="text-decoration:none;color:#ffffff;">Cancel</a></button>
                 </div>
             
  <% 
@@ -350,13 +350,13 @@ e.printStackTrace();
     <script>
         function formSubmit() {
         	var b = document.forms["form"]["contnum"].value;
-      	  if (b == "") {
-      	    alert(" Contact Number  must be filled out");
+      	  if (b == "" || b.length!=10) {
+      	    alert(" Contact Number must be filled out or Invalid Contact Number");
       	    return false;
       	  }
       	  var c = document.forms["form"]["doc"].value;
       	  if (c == "") {
-      	    alert(" Date of Coming must be filled out");
+      	    alert(" Arriving date must be filled out");
       	    return false;
       	  }
       	  var d = document.forms["form"]["time"].value;
@@ -364,8 +364,22 @@ e.printStackTrace();
       	    alert(" Time must be filled out");
       	    return false;
       	  }
-      	 
-      	 if(b!="" && c!="" && d!="") {
+      	
+      	var today=new Date();
+		var date=new Date(document.forms["form"]["doc"].value);
+		var t = today.getHours()+":"+today.getMinutes();
+		date.setHours(0,0,0,0);
+		today.setHours(0,0,0,0);
+      	 if(date<today && date!=today) {
+      		 
+      		 alert("Invalid Date and Time");
+      		 
+      	 }
+      	 if((d<=t) && (date.setHours(0,0,0,0)==today.setHours(0,0,0,0))){
+      		 alert("Invalid Time");
+      	 }
+      		 
+      	 if(b!="" && c!="" && d!="" && (date>=today) && b.length==10 && (d>t)) {
       		document.getElementById("form").submit();
       		alert("Your Request has been taken down");
       	 }

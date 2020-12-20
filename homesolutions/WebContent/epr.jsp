@@ -212,7 +212,7 @@
 				<th>Customer's Contact Number</th>
 				<th>Customer's Name</th>
 				<th>Customer's Address</th>
-				<th>Date to come</th>
+				<th>Arriving Date</th>
 				<th>Arriving time</th>
 				<th>Mode of Payment</th>
 				<th>Status</th>
@@ -414,8 +414,11 @@ function openFName(){
 		function closeform() {
 		  document.getElementById("myform").style.display = "none";
 		}
+		
+		
+		
 		function cod(){
-		 			alert("You Confirmed their request.");
+					 			alert("You Confirmed their request.");
 			document.getElementById("form1").submit();}
 		function doc(){
  			alert("You Declined their request.");
