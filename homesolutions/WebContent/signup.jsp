@@ -176,22 +176,22 @@ background-color: rgb(255, 180, 20);
     <div id="back">
         <div id="left">
             <h2>Sign Up</h2>
-            <form action="<%=request.getContextPath()%>/signup1"  id="form2">
+            <form action="<%=request.getContextPath()%>/signup1"  id="form2" method="post">
               
               <input type="number" placeholder="Contact number" name="contnum" id="contnum" > 
               <div class="line"></div>
-              <input type="password" placeholder=" Create Password" name ="password" id="myInput">
+              <input type="password" placeholder=" Create Password" name ="password" id="password">
               <div class="line"></div>
               <input type="number" placeholder="Enter OTP" name ="otp">
               <div class="line"></div>
               <div class="checkbox">
-                <p>Show Password</p><input type="checkbox" onclick="myFunction()" id="showpassword">
+                <p>Show Password</p><input type="checkbox" onclick="myFunction();" id="showpassword">
               </div>
 
 
 
               <div id="buttons">
-                <button onclick="val()">Register</button>
+                <button onclick="return val()">Register</button>
                 <button>send otp</button>
                  <span style="color:red;">${errMsg}</span>
                 
@@ -340,12 +340,13 @@ background-color: rgb(255, 180, 20);
 	  }
 	  if(e!="" && f!="" && mobile.value.length==10){
 		document.getElementById("form2").submit();
+		return true;
 		}
 
       }
       function myFunction(){
     	 
-  var x = document.getElementById("myInput");
+  var x = document.getElementById("password");
   if (x.type == "password") {
     x.type = "text";
   } else {
