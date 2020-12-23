@@ -328,7 +328,7 @@ while(resultset.next()){
                
             </form>
              <div id="buttons">
-                    <button onclick="formSubmit()">Confirm</button>
+                    <button onclick="return formSubmit()">Confirm</button>
                     <button ><a href="enduser3.jsp?contnum=<%=request.getParameter("cont")%>&&pincode=<%=request.getParameter("pincode")%>" style="text-decoration:none;color:#ffffff;">Cancel</a></button>
                 </div>
             
