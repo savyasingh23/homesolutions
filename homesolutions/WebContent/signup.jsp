@@ -182,7 +182,7 @@ background-color: rgb(255, 180, 20);
               <div class="line"></div>
               <input type="password" placeholder=" Create Password" name ="password" id="password">
               <div class="line"></div>
-              <input type="text" placeholder="Enter OTP" name ="otp">
+              <input type="text" placeholder="Enter the Captcha" name ="otp">
               <div class="line"></div>
               <div class="checkbox">
                 <p>Show Password</p><input type="checkbox" onclick="myFunction();" id="showpassword">
@@ -192,9 +192,9 @@ background-color: rgb(255, 180, 20);
 
               <div id="buttons">
                 <button  onclick="return val()">Register</button>
-                <button type="button" onclick="return generate();return false;">Send OTP</button>
+                <button type="button" onclick="return generate();return false;">Send Captcha</button>
                 <div>
-                Your OTP is  <b><span id="otpp"></span></b>
+                Your Captcha is  <b><span id="otpp"></span></b>
                 </div>
                 <div>Time left : <span id="timer"></span></div>
                 <div><span style="color:red;">${errMsg}</span></div>
@@ -342,14 +342,14 @@ background-color: rgb(255, 180, 20);
 	  }
 	  var f = document.forms["form2"]["otp"].value;
 	  if (f == "" ) {
-	    alert(" OTP must be filled out");
+	    alert(" Captcha must be filled out");
 	    return false;
 	  }
 	 
 	  if(e!="" && f!="" && mobile.value.length==10){
 		var io=document.getElementById("otpp").innerText;
 		  if(io!=f){
-			  alert("Please enter the correct OTP.");
+			  alert("Please enter the correct Captcha.");
 			  return false;
 		  }
 		  else {
@@ -423,7 +423,7 @@ background-color: rgb(255, 180, 20);
    
    // Do timeout stuff here
    document.getElementById('otpp').innerHTML= '';
-   alert('Timeout for otp');
+   alert('Timeout for Captcha');
  }
 
  
