@@ -182,7 +182,7 @@ background-color: rgb(255, 180, 20);
               <div class="line"></div>
               <input type="password" placeholder=" Create Password" name ="password" id="password">
               <div class="line"></div>
-              <input type="number" placeholder="Enter OTP" name ="otp">
+              <input type="text" placeholder="Enter OTP" name ="otp">
               <div class="line"></div>
               <div class="checkbox">
                 <p>Show Password</p><input type="checkbox" onclick="myFunction();" id="showpassword">
@@ -191,9 +191,13 @@ background-color: rgb(255, 180, 20);
 
 
               <div id="buttons">
-                <button onclick="return val()">Register</button>
-                <button>send otp</button>
-                 <span style="color:red;">${errMsg}</span>
+                <button  onclick="return val()">Register</button>
+                <button type="button" onclick="return generate();return false;">Send OTP</button>
+                <div>
+                Your OTP is  <b><span id="otpp"></span></b>
+                </div>
+                <div>Time left : <span id="timer"></span></div>
+                <div><span style="color:red;">${errMsg}</span></div>
                 
 
               </div>
@@ -319,7 +323,9 @@ background-color: rgb(255, 180, 20);
 
     <script>
       gsap.from('#back ',{duration: 2.5 , ease: 'expo.inOut', x: 1000 , opacity:0})
+   
       function val() {
+    	  
     	  var mobile = document.getElementById("contnum");
     	            
   	    if(mobile.value.length!=10 || mobile.value==""){
@@ -330,17 +336,26 @@ background-color: rgb(255, 180, 20);
   	  
 	  var e = document.forms["form2"]["password"].value;
 	  if (e == "") {
+		  
 	    alert(" Password must be filled out");
 	    return false;
 	  }
 	  var f = document.forms["form2"]["otp"].value;
-	  if (f == "") {
+	  if (f == "" ) {
 	    alert(" OTP must be filled out");
 	    return false;
 	  }
+	 
 	  if(e!="" && f!="" && mobile.value.length==10){
-		document.getElementById("form2").submit();
+		var io=document.getElementById("otpp").innerText;
+		  if(io!=f){
+			  alert("Please enter the correct OTP.");
+			  return false;
+		  }
+		  else {
+		 		  		document.getElementById("form2").submit();
 		return true;
+		  }
 		}
 
       }
@@ -353,8 +368,66 @@ background-color: rgb(255, 180, 20);
     x.type = "password";
   }
 }
-      
+    
+ function generate(){
+    	  var mobile = document.getElementById("contnum");
+          
+    	    if(mobile.value.length!=10 || mobile.value==""){
+    	       
+    	       alert("Invalid Contact Number");
+    	       return false;
+    	    }
+    	  
+  	  var e = document.forms["form2"]["password"].value;
+  	  if (e == "") {
+  	    alert(" Password must be filled out");
+  	    return false;
+  	  }
+  	 
+  	  if(e!="" && mobile.value.length==10){
+  		  
+  		  var num='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  		  var OTP='';
+  		var len = num.length;
+  		  for(var i=0;i<6;i++) {
+  			  OTP+=num[Math.floor(Math.random()*len)];
+  		  }
+  		  document.getElementById('otpp').innerHTML= OTP;
+  		timer(120);
+		  return true;
+		  
+  		}
+      }
+ let timerOn = true;
 
+ function timer(remaining) {
+   var m = Math.floor(remaining / 60);
+   var s = remaining % 60;
+   
+   m = m < 10 ? '0' + m : m;
+   s = s < 10 ? '0' + s : s;
+   document.getElementById('timer').innerHTML = m + ':' + s;
+   remaining -= 1;
+   
+   if(remaining >= 0 && timerOn) {
+     setTimeout(function() {
+         timer(remaining);
+     }, 1000);
+     return;
+   }
+
+   if(!timerOn) {
+     
+     return true;
+   }
+   
+   // Do timeout stuff here
+   document.getElementById('otpp').innerHTML= '';
+   alert('Timeout for otp');
+ }
+
+ 
+ 
     </script>    
 </body>
 </html>
